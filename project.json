@@ -1,0 +1,8 @@
+{
+  "engine": "cocos2d-html5",
+  "packages": "packages",
+  "version": "2.4.3",
+  "name": "BubbleShooter",
+  "id": "f222b914-0a23-4c4b-81b4-eb6c35ab5c06",
+  "isNew": false
+}
