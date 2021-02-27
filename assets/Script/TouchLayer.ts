@@ -1,12 +1,21 @@
-
 const { ccclass, property } = cc._decorator;
+
+import GameController from './GameController';
+import PathLayer from './PathLayer';
+
 
 @ccclass
 export default class TouchLayer extends cc.Component {
 
+    gameController: GameController;
+    
+
+    @property(PathLayer)
+    pathLayer: PathLayer = null;
+
     @property
     minTouchYDistance = 100;
-    // LIFE-CYCLE CALLBACKS:
+    
 
     @property(cc.Vec2)
     _startPoint = new cc.Vec2(0, 0);
@@ -17,11 +26,13 @@ export default class TouchLayer extends cc.Component {
     }
 
     set startPoint(point : cc.Vec2) {
-        this._startPoint = point
+        this._startPoint = point;
     }
 
+    // LIFE-CYCLE CALLBACKS:
     onLoad() {
         this.registerEvent();
+        this.gameController = this.node.parent.getComponent(GameController);
     }
 
     start() {
@@ -36,20 +47,38 @@ export default class TouchLayer extends cc.Component {
     }
 
     onEventStart(event: cc.Event.EventTouch) {
-        let worldPoint = event.getLocation();
+        let location= event.getLocation();
+        this.setPath(location);
+        
     }
 
     onEventMove(event: cc.Event.EventTouch) {
-        let viewPoint= event.getLocationInView();
+        let location= event.getLocation();
+        this.setPath(location);
         // console.log('start Event \n worldPoint= ', viewPoint.x, viewPoint.y);
     }
 
     onEventCancel(event: cc.Event.EventTouch) {
-        let viewPoint= event.getLocationInView();
+
     }
 
     onEventEnd(event: cc.Event.EventTouch) {
-        let viewPoint= event.getLocationInView();
+        
+    }
+
+    setPath(touchLocation : cc.Vec2) {
+        if(touchLocation.y - this.startPoint.y > this.minTouchYDistance){
+            this.gameController.setPath(this.startPoint, touchLocation);
+            this.pathLayer.setPath();
+        }
+    }
+
+    removePath() {
+
+    }
+
+    emitBall() {
+
     }
 
 }

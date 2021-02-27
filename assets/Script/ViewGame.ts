@@ -16,8 +16,9 @@ export default class ViewGame extends cc.Component {
     start () {
         // init logic
         this.pathLayer.position = this.beginPoint.position;
-        this.pathLayer.rotation = 0;
         this.touchLayer.position = this.beginPoint.position;
         let touchLayerCom = this.touchLayer.getComponent(TouchLayer);
+        let startWorldPos = this.touchLayer.convertToWorldSpaceAR(new cc.Vec2(0, 0));
+        touchLayerCom.startPoint = startWorldPos;
     }
 }
