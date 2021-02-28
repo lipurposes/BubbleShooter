@@ -82,18 +82,21 @@
       },
       {
         "__id__": 11
+      },
+      {
+        "__id__": 13
       }
     ],
     "_active": true,
     "_components": [
       {
-        "__id__": 13
-      },
-      {
-        "__id__": 14
-      },
-      {
         "__id__": 15
+      },
+      {
+        "__id__": 16
+      },
+      {
+        "__id__": 17
       }
     ],
     "_prefab": null,
@@ -503,7 +506,7 @@
   },
   {
     "__type__": "cc.Node",
-    "_name": "touchLayer",
+    "_name": "bubbleLayer",
     "_objFlags": 0,
     "_parent": {
       "__id__": 2
@@ -513,6 +516,98 @@
     "_components": [
       {
         "__id__": 12
+      }
+    ],
+    "_prefab": null,
+    "_opacity": 255,
+    "_color": {
+      "__type__": "cc.Color",
+      "r": 255,
+      "g": 255,
+      "b": 255,
+      "a": 255
+    },
+    "_contentSize": {
+      "__type__": "cc.Size",
+      "width": 13,
+      "height": 13
+    },
+    "_anchorPoint": {
+      "__type__": "cc.Vec2",
+      "x": 0,
+      "y": 0.5
+    },
+    "_trs": {
+      "__type__": "TypedArray",
+      "ctor": "Float64Array",
+      "array": [
+        -540,
+        -100,
+        0,
+        0,
+        0,
+        0,
+        1,
+        1,
+        1,
+        1
+      ]
+    },
+    "_eulerAngles": {
+      "__type__": "cc.Vec3",
+      "x": 0,
+      "y": 0,
+      "z": 0
+    },
+    "_skewX": 0,
+    "_skewY": 0,
+    "_is3DNode": false,
+    "_groupIndex": 0,
+    "groupIndex": 0,
+    "_id": "deJHG8YzpHQKwBbuqc9NOI"
+  },
+  {
+    "__type__": "1cd47vvGKxBvo0w9Nh92W9k",
+    "_name": "",
+    "_objFlags": 0,
+    "node": {
+      "__id__": 11
+    },
+    "_enabled": true,
+    "bubblePrefabs": [
+      {
+        "__uuid__": "14552e30-ee17-4d4c-9846-2504b33d5e45"
+      },
+      {
+        "__uuid__": "fb84adfe-9df8-43a9-af81-6252899c9000"
+      },
+      {
+        "__uuid__": "445b3df1-1cab-4251-816a-2be67b51f891"
+      },
+      {
+        "__uuid__": "1c727b02-f96e-4947-9b28-208ca93d3615"
+      },
+      {
+        "__uuid__": "03ff0c11-9fb6-4069-9951-a6e8533cecd7"
+      },
+      {
+        "__uuid__": "80ab4613-356a-4d5f-953b-41b119e91e02"
+      }
+    ],
+    "_id": "1bv5snKYhLXoec54bmQfsT"
+  },
+  {
+    "__type__": "cc.Node",
+    "_name": "touchLayer",
+    "_objFlags": 0,
+    "_parent": {
+      "__id__": 2
+    },
+    "_children": [],
+    "_active": true,
+    "_components": [
+      {
+        "__id__": 14
       }
     ],
     "_prefab": null,
@@ -568,7 +663,7 @@
     "_name": "",
     "_objFlags": 0,
     "node": {
-      "__id__": 11
+      "__id__": 13
     },
     "_enabled": true,
     "pathLayer": {
@@ -611,7 +706,7 @@
       "__id__": 9
     },
     "touchLayer": {
-      "__id__": 11
+      "__id__": 13
     },
     "beginPoint": {
       "__id__": 8

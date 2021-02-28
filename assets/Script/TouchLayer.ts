@@ -63,7 +63,8 @@ export default class TouchLayer extends cc.Component {
     }
 
     onEventEnd(event: cc.Event.EventTouch) {
-        
+        this.removePath();
+        this.emitBall();
     }
 
     setPath(touchLocation : cc.Vec2) {
@@ -74,11 +75,11 @@ export default class TouchLayer extends cc.Component {
     }
 
     removePath() {
-
+        this.pathLayer.removePath();
     }
 
     emitBall() {
-
+        this.pathLayer.emitBall();
     }
 
 }
