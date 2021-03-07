@@ -1,13 +1,13 @@
 
 import GameController from './GameController';
-import BubbleLayer from './BubbleLayer';
+import BubbleView from './BubbleView';
 const { ccclass, property } = cc._decorator;
 
 @ccclass
 export default class ViewGame extends cc.Component {
 
     @property()
-    pointDis = 100;
+    pointDis = 30;
 
     @property()
     pointSpeed = 50;
@@ -15,8 +15,8 @@ export default class ViewGame extends cc.Component {
     @property()
     bubbleSpeed = 1000;
 
-    @property(BubbleLayer)
-    bubbleLayer: BubbleLayer = null;
+    @property(BubbleView)
+    bubbleView: BubbleView = null;
 
     @property(cc.Prefab)
     pointSp = null;
@@ -28,14 +28,17 @@ export default class ViewGame extends cc.Component {
     private ballTime = 0;
     private colorIndex = 0;
     private isEmmit = false;
+    private nodeToWorldPosY = 100;
 
     gameController: GameController = null;
-    maxY = 1800;
+    maxY = 1000;
 
     pointsTimes: number[] = [];
 
     start() {
         this.gameController = cc.Canvas.instance.getComponent(GameController);
+        this.nodeToWorldPosY = this.node.convertToWorldSpace(cc.v2(0, 0)).y;
+        console.log(this.nodeToWorldPosY);
     }
 
     setPath() {
@@ -50,8 +53,8 @@ export default class ViewGame extends cc.Component {
         let pathSpeed = path.speed;
         let time = 0;
         let pos = 0;
-        let timeSpace = this.pointDis / this.pointSpeed;
-        let timeSpacePath = timeSpace * (this.pointSpeed / pathSpeed);
+        let moveTime = this.pointDis / this.pointSpeed;
+        let timeSpacePath = moveTime * (this.pointSpeed / pathSpeed);
         while (true) {
             let setPoint = path.getPoint(time);
             if (setPoint.y < this.maxY) {
@@ -105,11 +108,12 @@ export default class ViewGame extends cc.Component {
 
             let setPoint = path.getPoint(this.ballTime);
             this.ball.setPosition(setPoint.x, setPoint.y);
-            let [isCollide, indexs] = this.bubbleLayer.checkIsLinked(setPoint);
-            if(isCollide){
-                this.removeBall();
-                this.bubbleLayer.createBubble(setPoint, indexs, this.colorIndex);
-            }
+            setPoint.y += this.nodeToWorldPosY;
+            // let [isCollide, indexs] = this.bubbleView.checkIsLinked(setPoint);
+            // if(isCollide){
+            //     this.removeBall();
+            //     this.bubbleView.createBubble(setPoint, indexs, this.colorIndex);
+            // }
         }
         // let path = this.gameController.getPath();
         // let pathSpeed = path.speed;

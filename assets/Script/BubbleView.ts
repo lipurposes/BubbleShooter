@@ -3,10 +3,13 @@ import GameController from './GameController';
 const { ccclass, property } = cc._decorator;
 
 @ccclass
-export default class BubbleLayer extends cc.Component {
+export default class BubbleView extends cc.Component {
 
     @property([cc.Prefab])
     public bubblePrefabs: cc.Prefab[] = [];
+
+    @property(cc.Node)
+    bubbleLayer: cc.Node = null;
 
     private startPosY = 0;
     private bubbleRadius = 30;
