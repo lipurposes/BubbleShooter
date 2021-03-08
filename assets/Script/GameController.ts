@@ -1,5 +1,6 @@
 import ViewGame from "./ViewGame";
 import PathData from "./PathData";
+import BubbleData from "./BubbleData";
 
 const {ccclass, property} = cc._decorator;
 
@@ -14,11 +15,13 @@ export default class GameController extends cc.Component {
     viewGame: ViewGame = null;
     xLength: number = 0;
     path: PathData;
+    bubbleData: BubbleData;
 
     // LIFE-CYCLE CALLBACKS:
     onLoad() {
         this.xLength = this.node.width / 2;
         this.path = new PathData(this.xLength - this.ballRadius, this.baseSpeed);
+        this.setBubbleData();
     }
 
     start() {
@@ -32,5 +35,20 @@ export default class GameController extends cc.Component {
 
     getPath(){
         return this.path;
+    }
+
+    setBubbleData(){
+        this.bubbleData = new BubbleData();
+        this.bubbleData.init([
+            [0, 2, 1, 2, 4, 5, 0, 0, 1, 0],
+            [0, 2, 1, 2, 4, 5, 0, 0, 1, 0],
+            [0, 2, 1, 2, 4, 5, 0, 0, 1, 0],
+            [0, 2, 1, 2, 4, 5, 0, 0, 1, 0],
+            [0, 2, 1, 2, 4, 5, 0, 0, 1, 0]
+        ]);
+    }
+
+    getBubbleData(){
+        return this.bubbleData;
     }
 }

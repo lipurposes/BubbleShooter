@@ -16,21 +16,32 @@ export default class BubbleData {
         
     }
 
-    init(bubbleData : [[number]]){
+    init(bubbleData : number[][]){
         for(let i = 0; i < bubbleData.length; ++i){
             this.bubbles[i] = [];
+            this.bubbleLength[i] = 0;
             for(let j = 0; j < bubbleData[i].length; ++j){
-                this.bubbles[i][j] = new Bubble(bubbleData[i][j]);
+                if(bubbleData[i][j] >= 0){
+                    this.bubbles[i][j] = new Bubble(bubbleData[i][j]);
+                    this.bubbleLength[i] += 1;
+                }
             }
-            this.bubbleLength[i] = bubbleData[i].length;
         }
     }
     
-    getBubble(row, col){
+    getBubble(row, col): Bubble{
         if(this.bubbles[row]){
             return this.bubbles[row][col];
         }
         return null;
+    }
+
+    getRow(): number{
+        return this.bubbles.length;
+    }
+
+    getAllBubbles(): Bubble[][]{
+        return this.bubbles;
     }
 
     addBubble(row, col, color){
@@ -87,3 +98,5 @@ export default class BubbleData {
         this._markAsLinked(row + 1, right - 1, noMarkedTable);
     }
 }
+
+export {Bubble};
